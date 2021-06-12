@@ -51,11 +51,16 @@ class Motion:
         self.servo = AngularServo(16, min_angle=0, max_angle=180, min_pulse_width=0.0006, max_pulse_width=0.0024)
 
     def move_detect(self):
-        # while True:
-        while self.sensor.distance == 1.0:
-            for i in range (180):
-                self.servo.angle = float(i)
-                sleep(0.05)
-            for i in range (180, 0, -1):
-                self.servo.angle = float(i)
-                sleep(0.05)
+        while True:
+            while self.sensor.distance == 1.0:
+                print("The distance detected is: ")
+                print(self.sensor.distance)
+                for i in range (180):
+                    self.servo.angle = float(i)
+                    sleep(0.05)
+                for i in range (180, 0, -1):
+                    self.servo.angle = float(i)
+                    sleep(0.05)
+            
+
+Motion().move_detect()
